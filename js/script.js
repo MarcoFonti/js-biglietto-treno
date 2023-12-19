@@ -9,29 +9,27 @@ const userAge = parseInt(prompt('Quanti anni hai?', '17'));
 //Risposta in console
 console.log(numberKilo, userAge);
 
+//Creo messaggio visivo
+const element = document.getElementById('price');
+const messPrice = ' Il prezzo del biglietto è ';
+
 
 //Calcolo km utente
 let calculationKilo = numberKilo * 0.21;
 console.log ('Calcolo: ' + calculationKilo);
 
+let calculationScount;
 
-//Apllico sconto solo se:
-let result;
 if (userAge < 18) {
-    result = 'e avrai uno sconto del 20%';
+    calculationScount = calculationKilo - (20 / 100);
+    price.innerText = messPrice + ' ' + calculationScount.toFixed(2)
 } else if (userAge > 65) {
-    result = 'e avrai uno sconto del 40%';
+    calculationScount = calculationKilo - (40 / 100);
+    price.innerText = messPrice + ' ' + calculationScount.toFixed(2)
 } else {
-    result = 'ma non avrai lo sconto';
+    price.innerText = messPrice + ' ' + calculationKilo.toFixed(2)
 }
 
 
-//Massimo 2 decimali
-const formattedCalc = calculationKilo.toFixed(2);
 
 
-//Creo messaggio visivo
-const element = document.getElementById('price');
-const messPrice = ' Il prezzo del biglietto è ';
-
-price.innerText = messPrice + ' ' + formattedCalc + '€' +  ' ' + result;
