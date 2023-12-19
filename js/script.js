@@ -3,32 +3,40 @@ console.log('JS OK');
 
 
 //Chiedere all'utente il numero di chilometri che vuole percorre
-const numberKilo = parseInt(prompt('Quanti chilometri vuoi percorre?', '20'));
+const numberKilo = parseInt(prompt('Quanti chilometri vuoi percorre?', 20));
 //Chiedere all'utente età
-const userAge = parseInt(prompt('Quanti anni hai?', '17'));
+const userAge = parseInt(prompt('Quanti anni hai?', 17));
 //Risposta in console
 console.log(numberKilo, userAge);
 
-//Creo messaggio visivo
-const element = document.getElementById('price');
-const messPrice = ' Il prezzo del biglietto è ';
+//Recupore l'elemento
+const priceElement = document.getElementById('price');
 
+// Preparo il messaggio
+let message = 'Il prezzo del biglietto è ';
 
 //Calcolo km utente
-let calculationKilo = numberKilo * 0.21;
-console.log ('Calcolo: ' + calculationKilo);
+const priceKm= 0.21;
 
-let calculationScount;
+//Prezzo senza sconto
+const priceWithoutDisc = numberKilo * priceKm;
+console.log(priceWithoutDisc);
+
+//Sconti
+let scount20 = 0.20;
+let scount40= 0.40;
+
+let finalPrice = priceWithoutDisc;
 
 if (userAge < 18) {
-    calculationScount = calculationKilo - (20 / 100);
-    price.innerText = messPrice + ' ' + calculationScount.toFixed(2)
+    finalPrice = priceWithoutDisc * (1 - scount20);
 } else if (userAge > 65) {
-    calculationScount = calculationKilo - (40 / 100);
-    price.innerText = messPrice + ' ' + calculationScount.toFixed(2)
-} else {
-    price.innerText = messPrice + ' ' + calculationKilo.toFixed(2)
+    finalPrice = priceWithoutDisc * (1 - scount40);
 }
+
+// Messaggio del prezzo
+priceElement.innerText = message + finalPrice.toFixed(2) + '€';
+
 
 
 
